@@ -7,22 +7,46 @@ function App() {
 
   function adicionarTarefa() {
     if (novaTarefa.trim()) {
-      setTarefas([...tarefas, novaTarefa]);
+      setTarefas([
+        ...tarefas,
+        { texto: novaTarefa, concluida: false }
+      ]);
       setNovaTarefa("");
     }
   }
 
-  // Nova função: cria um novo array sem o item do índice clicado
-  function removerTarefa(index) {
-    const novaLista = tarefas.filter((_, i) => i !== index);
-    setTarefas(novaLista);
+  function concluirTarefa(index) {
+    const tarefa = tarefas[index];
+    const restante = tarefas.filter((_, i) => i !== index);
+
+    // marca como concluída e manda pro final da lista
+    setTarefas([
+      ...restante,
+      { ...tarefa, concluida: true }
+    ]);
   }
+
+  function excluirTarefa(index) {
+    setTarefas(tarefas.filter((_, i) => i !== index));
+  }
+
 
   return (
     <div className="container">
       <h1>Lista de Tarefas</h1>
       <p>Bem-vindo à sua lista de tarefas!</p>
-      <p><i>By <a href="https://github.com/wanessasantos360" target="_blank" rel="noopener noreferrer">Wanessa Santos</a></i></p>
+      <p>
+        <i>
+          By{' '}
+          <a
+            href="https://github.com/wanessasantos360"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Wanessa Santos
+          </a>
+        </i>
+      </p>
 
       <div className="input-area">
         <input
@@ -33,15 +57,53 @@ function App() {
         <button onClick={adicionarTarefa}>Adicionar</button>
       </div>
 
-      <ul>
-        {tarefas.map((tarefa, index) => (
-          <li key={index}>
-            {tarefa}
-            {}
-            <button onClick={() => removerTarefa(index)}>❌</button>
-          </li>
-        ))}
-      </ul>
+      {/* Não mostra nada se não houver tarefas */}
+      {tarefas.length > 0 && (
+        <ul>
+          {tarefas.map((tarefa, index) => (
+            <li
+              key={index}
+              className={tarefa.concluida ? 'concluida' : ''}
+            >
+              {/* Pendente: ✅ [nome] ❌ */}
+              {!tarefa.concluida && (
+                <>
+                  <button
+                    className="btn-concluir"
+                    onClick={() => concluirTarefa(index)}
+                  >
+                    ✅
+                  </button>
+                  <span className="texto-tarefa">
+                    {tarefa.texto}
+                  </span>
+                  <button
+                    className="btn-excluir"
+                    onClick={() => excluirTarefa(index)}
+                  >
+                    ❌
+                  </button>
+                </>
+              )}
+
+              {/* Concluída: ~~[nome]~~ 🗑️ */}
+              {tarefa.concluida && (
+                <>
+                  <span className="texto-tarefa">
+                    {tarefa.texto}
+                  </span>
+                  <button
+                    className="btn-lixeira"
+                    onClick={() => excluirTarefa(index)}
+                  >
+                    🗑️
+                  </button>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

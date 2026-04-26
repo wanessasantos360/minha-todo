@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 62.5%; /* 62.5% de 16px = 10px, então 1rem = 10px */
+  font-size: 62.5%;
 }
 
 body {
@@ -15,7 +15,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 4rem 2rem;
-  font-size: 1.6rem; /* 16px */
+  font-size: 1.6rem;
 }
 
 .container {
@@ -28,13 +28,13 @@ body {
 }
 
 h1 {
-  font-size: 3.2rem;          /* 32px */
+  font-size: 3.2rem;
   color: #4a3f8f;
-  margin-bottom: 0.6rem;      /* 6px */
+  margin-bottom: 0.6rem;
   text-align: center;
 }
 
-p{
+p {
   text-align: center;
   color: #888;
   font-size: 1.3rem;
@@ -56,18 +56,20 @@ p a:hover {
 .input-area {
   display: flex;
   gap: 1rem;
-  margin-bottom: 2.4rem 0 2rem;
-  outline: none;
+  margin: 2.4rem 0 2rem; /* CORRIGIDO: era margin-bottom com múltiplos valores */
+  /* REMOVIDO: outline não faz sentido aqui */
 }
 
 input {
   flex: 1;
-  padding: 1rem;
-  border: px solid #ccc;
+  padding: 1rem 1.6rem;
+  border: 0.2rem solid #ccc; /* CORRIGIDO: estava "px solid" sem valor */
   border-radius: 1rem;
   font-size: 1.3rem;
-  background-color: #eaeaea;
+  background-color: #ffffff; /* CORRIGIDO: era #eaeaea (cinza escuro) */
   color: #333;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .input-area input::placeholder {
@@ -86,7 +88,7 @@ button {
   border: none;
   border-radius: 1rem;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.6rem; /* CORRIGIDO: era 16px, convertido para rem */
   white-space: nowrap;
 }
 
@@ -98,43 +100,75 @@ ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-
 }
 
 li {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem; /* ADICIONADO: espaço entre os elementos da li */
   padding: 1.4rem 1.6rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 0.1rem solid #eee; /* CORRIGIDO: era 1px */
   font-size: 1.3rem;
   color: #333;
   border-left: 0.4rem solid #667eea;
-  
-}
-
-li button {
-  background: transparent;
-  color: #e53e3e;
-  font-size: 18px;
-  padding: 0 8px;
-}
-
-li button:hover {
-  background: transparent;
-  color: #c53030;
+  transition: background 0.2s;
+  animation: fadeIn 0.3s ease; /* ADICIONADO: animação de entrada */
 }
 
 li:hover {
   background: #e8e8ff;
+}
 
+/* ADICIONADO: texto da tarefa ocupa o espaço do meio */
+.texto-tarefa {
+  flex: 1;
+}
+
+/* ADICIONADO: tarefa concluída */
+li.concluida {
+  border-left-color: #ccc;
+  background: #f9f9f9;
+}
+
+li.concluida .texto-tarefa {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+/* ADICIONADO: botões dentro da lista */
+.btn-concluir,
+.btn-excluir,
+.btn-lixeira {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.6rem;
+  transition: transform 0.1s, background 0.2s;
+  line-height: 1;
+}
+
+.btn-concluir:hover {
+  transform: scale(1.2);
+  background: #e8ffe8;
+}
+
+.btn-excluir:hover {
+  transform: scale(1.2);
+  background: #ffe0e0;
+}
+
+.btn-lixeira:hover {
+  transform: scale(1.2);
+  background: #fff3cd;
 }
 
 /* ===== ANIMAÇÃO DE ENTRADA ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-0.8rem); /* 8px */
+    transform: translateY(-0.8rem);
   }
   to {
     opacity: 1;
@@ -142,15 +176,14 @@ li:hover {
   }
 }
 
-
 /* ===== RESPONSIVO ===== */
-@media (max-width: 48rem) {   /* 480px */
+@media (max-width: 48rem) {
   .container {
-    padding: 2.4rem 1.8rem;   /* 24px | 18px */
+    padding: 2.4rem 1.8rem;
   }
 
   h1 {
-    font-size: 2.4rem;        /* 24px */
+    font-size: 2.4rem;
   }
 
   .input-area {
