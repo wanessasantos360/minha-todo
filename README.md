@@ -1,16 +1,32 @@
-# React + Vite
+# ✅ Lista de Tarefas — React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Demo da aplicação](./src/assets/tarefas1.gif)
 
-Currently, two official plugins are available:
+## 📋 Sobre
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Aplicação de lista de tarefas desenvolvida com React + Vite
+- **Introdução a programação web**
+- **Atividade**: A06 - Introdução ao React 
 
-## React Compiler
+## ⚙️ Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Adicionar tarefas
+- Remover tarefas individualmente
+- Validação para não adicionar tarefa vazia
 
-## Expanding the ESLint configuration
+## 🧠 Conceitos aplicados
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **JSX**: sintaxe que permite escrever HTML dentro do JavaScript
+- **Componentes**: funções que retornam JSX e formam a interface
+- **useState**: hook para gerenciar o estado da lista e do input
+
+## 🚀 Como rodar localmente
+
+```bash
+npm install
+npm run dev
+```
+
+## 🌐 Deploy
+
+Acesse a aplicação: [http://localhost:5173](http://localhost:5173)
