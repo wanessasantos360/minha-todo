@@ -1,6 +1,6 @@
 # ✅ Lista de Tarefas — React
 
-![Demo da aplicação](./src/assets/tarefas1.gif)
+![Demo da aplicação](./src/assets/tarefaUpgrade.gif)
 
 ## 📋 Sobre
 
